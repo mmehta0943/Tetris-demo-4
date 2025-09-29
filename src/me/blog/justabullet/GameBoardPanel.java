@@ -60,12 +60,12 @@ public class GameBoardPanel extends JPanel implements ActionListener {
 
 		gameBoard = new Tetrominoes[BoardWidth * BoardHeight];
 
-		// colour of tetrominoes
+		// colour of tetrominoes - FinTechCo purple/blue theme
 		colorTable = new Color[] {
-				new Color(0, 0, 0), 	  new Color(238, 64, 53),
-				new Color(243, 119, 54),  new Color(255, 201, 14),
-				new Color(123, 192, 67),  new Color(3, 146, 207),
-				new Color(235, 214, 135), new Color(164, 135, 235)
+				new Color(0, 0, 0),        new Color(99, 102, 241),
+				new Color(79, 70, 229),    new Color(109, 140, 255),
+				new Color(67, 56, 202),    new Color(129, 140, 248),
+				new Color(165, 180, 252),  new Color(139, 92, 246)
 		};
 
 		// keyboard listener
@@ -215,9 +215,10 @@ public class GameBoardPanel extends JPanel implements ActionListener {
 		}
 
 		g.setColor(Color.WHITE);
-		g.setFont(new Font("Consolas", Font.PLAIN, 28));
+		g.setFont(new Font("Arial", Font.BOLD, 28));
 		g.drawString(currentStatus, 15, 35);
 		g.drawString(currentLevel, 15, 70);
+		g.drawString("Pieces: " + pieceCount, 15, 105);
 
 		Dimension size = getSize();
 		int boardTop = (int) size.getHeight() - BoardHeight * blockHeight();
@@ -334,14 +335,6 @@ public class GameBoardPanel extends JPanel implements ActionListener {
 		curX = BoardWidth / 2 + 1;
 		curY = BoardHeight - 1 + curBlock.minY();
 		pieceCount++;
-
-		if (pieceCount >= 25) {
-			curBlock.setShape(Tetrominoes.NO_BLOCK);
-			timer.stop();
-			isStarted = false;
-			isGameOver = true;
-			return;
-		}
 
 		if (!isMovable(curBlock, curX, curY)) {
 			curBlock.setShape(Tetrominoes.NO_BLOCK);
