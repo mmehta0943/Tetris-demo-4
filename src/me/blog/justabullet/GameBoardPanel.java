@@ -335,14 +335,6 @@ public class GameBoardPanel extends JPanel implements ActionListener {
 		curY = BoardHeight - 1 + curBlock.minY();
 		pieceCount++;
 
-		if (pieceCount >= 25) {
-			curBlock.setShape(Tetrominoes.NO_BLOCK);
-			timer.stop();
-			isStarted = false;
-			isGameOver = true;
-			return;
-		}
-
 		if (!isMovable(curBlock, curX, curY)) {
 			curBlock.setShape(Tetrominoes.NO_BLOCK);
 			timer.stop();
